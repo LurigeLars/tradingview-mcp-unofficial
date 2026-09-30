@@ -94,7 +94,8 @@ def test_persistent_failure_raises_runtime_error(fast_retry):
 
     msg = str(exc_info.value)
     assert "transient errors on all" in msg
-    assert "scanner.tradingview.com" in msg
+    host_fragment = msg.split(" outage at ", 1)[1].split(". Wait", 1)[0]
+    assert host_fragment == "scanner.tradingview.com"
     assert "Wait" in msg
 
 
