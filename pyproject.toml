@@ -36,7 +36,7 @@ dependencies = [
   # every install at import time — the exact failure mode the two pins above
   # exist to prevent.
   "pandas>=2",
-  "requests>=2.32",
+  "requests>=2.33",
   # Pinned to ==3.0.0 on purpose. 3.2.0 makes a bare Query() default to a
   # *stock* preset filter that silently returns 0 rows for crypto/futures
   # scans, which would break coin/screener/futures tools. The Docker build uses
@@ -44,6 +44,12 @@ dependencies = [
   # rebuild drift to 3.2.0 and break paid traffic. See futures_service._futures_query.
   "tradingview-screener==3.0.0",
   "tradingview-ta>=3.3.0",
+  # Security floors for transitive runtime packages. These are declared
+  # directly because Docker installs from pyproject.toml rather than uv.lock.
+  "PyJWT>=2.15.0,<3",
+  "idna>=3.15,<4",
+  "python-dotenv>=1.2.2,<2",
+  "Pygments>=2.20.0,<3",
 ]
 
 [project.scripts]
